@@ -1,0 +1,55 @@
+from faculty_info import faculty_list
+
+def search_faculty():
+    query = input("Search by name/course/slot: ").lower()
+
+    found = False
+    for f in faculty_list:
+        if (query in f["name"].lower() or
+            query in f["course"].lower() or
+            query in f["slot"].lower()):
+            
+            print("\n--- Faculty Found ---")
+            print("Name:", f["name"])
+            print("Course:", f["course"])
+            print("Time Slot:", f["slot"])
+            print("Email:", f["email"])
+            print("---------------------")
+            found = True
+    
+    if not found:
+        print("No matching faculty found.\n")
+
+
+def add_faculty():
+    name = input("Name: ")
+    course = input("Course: ")
+    slot = input("Slot: ")
+    email = input("Email: ")
+
+    faculty_list.append({
+        "name": name,
+        "course": course,
+        "slot": slot,
+        "email": email
+    })
+
+    print("\nFaculty added (not permanent — only saved until program closes).\n")
+
+while True:
+    print("\n===== VIT FFCS TOOL =====")
+    print("1. Search Faculty")
+    print("2. Add Faculty")
+    print("3. Exit")
+
+    ch = input("Enter choice: ")
+
+    if ch == "1":
+        search_faculty()
+    elif ch == "2":
+        add_faculty()
+    elif ch == "3":
+        print("Thank you!")
+        break
+    else:
+        print("Invalid choice, try again.")
